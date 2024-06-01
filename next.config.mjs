@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+// next.config.js
+import { withContentlayer } from 'next-contentlayer'
 
-export default nextConfig;
+
+const nextConfig = {}
+
+
+export default withContentlayer(nextConfig)
