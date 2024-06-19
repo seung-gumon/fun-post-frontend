@@ -1,50 +1,48 @@
+// contentlayer.config.ts
 import { makeSource, defineDocumentType } from "contentlayer/source-files";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
-
-export const Post = defineDocumentType(() => ({
+var Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: "posts/*.mdx",
   fields: {
     title: {
       type: "string",
-      required: true,
+      required: true
     },
     createdAt: {
       type: "date",
-      required: true,
+      required: true
     },
     description: {
       type: "string",
-      required: true,
+      required: true
     },
     image: {
-      type: "string",
+      type: "string"
     },
     isPublished: {
       type: "boolean",
-      required: true,
+      required: true
     },
     tags: {
       type: "list",
       of: {
-        type: "string",
-      },
-    },
+        type: "string"
+      }
+    }
   },
   computedFields: {
     url: {
       type: "string",
-      resolve: (doc) =>
-        `/posts/${doc.title.replace(/\s+/g, "-").toLowerCase()}`,
-    },
-  },
+      resolve: (doc) => `/posts/${doc.title.replace(/\s+/g, "-").toLowerCase()}`
+    }
+  }
 }));
-
-export default makeSource({
+var contentlayer_config_default = makeSource({
   contentDirPath: "/content",
   documentTypes: [Post],
   mdx: {
@@ -57,16 +55,21 @@ export default makeSource({
         {
           theme: {
             dark: "one-dark-pro",
-            light: "github-light",
+            light: "github-light"
           },
           defaultLang: {
-            block: "typescript",
-          },
-        },
+            block: "typescript"
+          }
+        }
       ],
       rehypeAutolinkHeadings,
       rehypeSlug,
-      rehypeCodeTitles,
-    ],
-  },
+      rehypeCodeTitles
+    ]
+  }
 });
+export {
+  Post,
+  contentlayer_config_default as default
+};
+//# sourceMappingURL=compiled-contentlayer-config-IK6F6EL6.mjs.map
