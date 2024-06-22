@@ -45,7 +45,7 @@ export const Post = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: "/content",
+  contentDirPath: "/content/posts/*.mdx",
   documentTypes: [Post],
   mdx: {
     // @ts-expect-error - codeImport types are not compatible with remark plugins

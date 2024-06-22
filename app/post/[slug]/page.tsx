@@ -1,7 +1,6 @@
 import { allDocuments } from "@/.contentlayer/generated";
 import { Mdx } from "@/components/mdx-components";
 import { notFound } from "next/navigation";
-import { FC } from "react";
 
 interface PageProps {
   params: {
