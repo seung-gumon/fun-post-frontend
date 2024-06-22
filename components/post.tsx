@@ -1,5 +1,5 @@
-import { type Post } from 'contentlayer/generated';
-import { sortPosts } from '@/lib/utils';
+import { type Post } from "contentlayer/generated";
+import { sortPosts } from "@/lib/utils";
 
 interface PostProps {
   posts : Post[]
