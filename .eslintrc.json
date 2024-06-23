@@ -22,7 +22,10 @@
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "@typescript-eslint/quotes": ["error", "double"],
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "no-underscore-dangle": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/heading-has-content": "off"
   },
   "settings": {
     "tailwindcss": {

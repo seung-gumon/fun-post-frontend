@@ -5,9 +5,21 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
 
+const computedFields = {
+  slug: {
+    type: "string",
+    resolve: (doc) => `/${doc._raw.flattenedPath}`,
+  },
+  slugAsParams: {
+    type: "string",
+    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+  },
+};
+
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: "posts/*.mdx",
+  filePathPattern: "posts/**/*.mdx",
+  contentType: "mdx",
   fields: {
     title: {
       type: "string",
@@ -21,47 +33,25 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    image: {
-      type: "string",
-    },
-    isPublished: {
-      type: "boolean",
-      required: true,
-    },
-    tags: {
-      type: "list",
-      of: {
-        type: "string",
-      },
-    },
   },
-  computedFields: {
-    url: {
-      type: "string",
-      resolve: (doc) =>
-        `/posts/${doc.title.replace(/\s+/g, "-").toLowerCase()}`,
-    },
-  },
+  computedFields,
 }));
 
 export default makeSource({
-  contentDirPath: "/content/posts/*.mdx",
+  contentDirPath: "content",
   documentTypes: [Post],
   mdx: {
-    // @ts-expect-error - codeImport types are not compatible with remark plugins
     remarkPlugins: [codeImport],
     rehypePlugins: [
-      [
-        // @ts-expect-error - rehype-pretty-code types are not compatible with rehype plugins
-        rehypePrettyCode,
+      [rehypePrettyCode,
         {
-          theme: {
-            dark: "one-dark-pro",
-            light: "github-light",
-          },
-          defaultLang: {
-            block: "typescript",
-          },
+          // theme: {
+          //   dark: "one-dark-pro",
+          //   light: "github-light",
+          // },
+          // defaultLang: {
+          //   block: "typescript",
+          // },
         },
       ],
       rehypeAutolinkHeadings,
